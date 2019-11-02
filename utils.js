@@ -17,9 +17,9 @@ exports.error = error;
 function addVulnerability(vuln, jar, url, verbose){
 	p = vuln.payload.replace("window.___xssSink({0})", "alert(1)");
 	jar.push([p, vuln.element, url]);
-	if(verbose){
-		printVulnerability(p, vuln.element);
-	}
+	//if(verbose){
+	//	printVulnerability(p, vuln.element);
+	//}
 }
 
 function printVulnerability(payload, element, url){
@@ -41,16 +41,9 @@ function error(message){
 }
 
 function banner(){
-	console.log(chalk.yellow([
-		"   ___  ____  __  ______  _",
-		"  / _ \\/ __ \\/  |/  / _ \\(_)__ _",
-		" / // / /_/ / /|_/ / // / / _ `/",
-		"/____/\\____/_/  /_/____/_/\\_, /"
-	].join("\n")));
-	console.log(chalk.green(" ver 1.0.0               ") + chalk.yellow("/___/"));
-	console.log(chalk.yellow("DOM XSS scanner for Single Page Applications"));
-	console.log(chalk.blue("https://github.com/fcavallarin/domdig"));
-	console.log("");
+	//console.log(chalk.green(" ver 1.0.0               ") + chalk.yellow("/___/"));
+	//console.log(chalk.yellow("DOM XSS scanner for Single Page Applications"));
+	//console.log("");
 }
 
 function usage(){
@@ -68,11 +61,7 @@ function usage(){
 		"   -R REFERER        set referer",
 		"   -p PROXY          proxy string protocol:host:port",
 		"                     protocol can be 'http' or 'socks5'",
-		"   -l                do not run chrome in headless mode",
 		"   -E HEADER         set extra http headers (ex -E foo=bar -E bar=foo)",
-		"   -s SEQUENCE|PATH  set initial sequence (JSON)",
-		"                     If PATH is a valid readable file,",
-		"                     SEQUENCE is read from that file",
 		"   -o PATH           save findings to a JSON file",
 		"   -J                print findings as JSON",
 		"   -q                quiet mode",
@@ -148,9 +137,6 @@ function parseArgs(args, url){
 				} else {
 					options.proxy = args[arg];
 				}
-				break;
-			case "l":
-				options.headlessChrome = !args[arg];
 				break;
 			case "E":
 				let hdrs = typeof args[arg] == 'string' ? [args[arg]] : args[arg];
