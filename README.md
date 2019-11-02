@@ -17,9 +17,9 @@ Chromium web browser를 이용한 web crawler인 [htcrawl](https://htcrawl.org) 
 ## GETTING STARTED
 ### Installation
 ```
-https://github.com/cpstdhs/gachon_project.git
-cd domdig && npm i && cd ..
-node domdig/domdig.js
+git clone https://github.com/cpstdhs/gachon_project.git
+cd gachon_project && npm i && cd ..
+node gachon_project/domdig.js
 ```
 
 ### Example
