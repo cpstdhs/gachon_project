@@ -11,6 +11,7 @@ function getNewPayload(payload, element){
 	const k = "" + Math.floor(Math.random()*4000000000);
 	const p = payload.replace("{0}", k);
 	PAYLOADMAP[k] = {payload:payload, element:element};
+	// console.log(PAYLOADMAP)
 	return p;
 }
 
@@ -144,12 +145,12 @@ function ps(message){
 	const options = utils.parseArgs(argv, targetUrl);
 
 	var payloads = argv.P ? utils.loadPayloadsFromFile(argv.P) : defpayloads;
-	ps("starting scan");
+	//ps("---STARTING SCAN---");
 	let cnt = 1;
 	for(let payload of payloads){
-		ps("crawling page");
-		await crawlAndFuzz(targetUrl.href, payload, options);
-		ps(cnt + "/" + payloads.length + " payloads checked");
+	//	ps("crawling..");
+		await crawlAndFuzz(targetUrl.href, payload, options); // go crawling
+	//	ps(cnt + "/" + payloads.length + " payloads checked!");
 		cnt++;
 	}
 
